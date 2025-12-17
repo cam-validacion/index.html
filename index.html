@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Validación de Documentos Académicos</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:#f4f4f4;
+}
+
+.contenedor{
+  max-width:420px;
+  margin:20px auto;
+  background:#fff;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 0 10px rgba(0,0,0,.1);
+}
+
+/* ENCABEZADO */
+.encabezado img{
+  width:100%;
+  display:block;
+  margin-bottom:20px;
+}
+
+/* TITULOS */
+h1{
+  font-size:20px;
+  font-weight:normal;
+  margin:0;
+}
+
+h2{
+  font-size:24px;
+  margin:10px 0 20px;
+}
+
+/* CAMPOS */
+label{
+  font-size:12px;
+  color:#777;
+}
+
+.campo{
+  border:1px solid #ccc;
+  border-radius:8px;
+  padding:12px;
+  margin-bottom:15px;
+  font-size:16px;
+}
+
+/* FECHA */
+.fecha{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:16px;
+  margin-top:10px;
+}
+
+.check{
+  width:45px;
+}
+
+/* FOOTER */
+.footer img{
+  width:100%;
+  margin-top:25px;
+}
+
+.footer p{
+  font-size:12px;
+  color:#666;
+  text-align:center;
+  margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+<div class="contenedor">
+
+  <!-- ENCABEZADO -->
+  <div class="encabezado">
+    <img src="https://i.imgur.com/jgjXhuV.jpeg" alt="Encabezado">
+  </div>
+
+  <h1>Sistema de Información y Gestión Educativa</h1>
+  <h2><strong>Validación de documentos académicos electrónicos</strong></h2>
+
+  <label>NOMBRE</label>
+  <div class="campo" id="nombre"></div>
+
+  <label>CURP</label>
+  <div class="campo" id="curp"></div>
+
+  <label>DOCUMENTO</label>
+  <div class="campo">Diplomado en línea (160 horas)</div>
+
+  <label>FECHA</label>
+  <div class="fecha">
+    <img class="check" src="https://i.imgur.com/0R0ZQxM.png" alt="check">
+    <div id="fecha"></div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <img src="https://i.imgur.com/8UTuFKj.jpeg" alt="Footer">
+    <p>
+      Sistema Electrónico Estatal del Estado de Coahuila<br>
+      Es una fuente de inteligencia anticorrupción para la construcción de información.
+    </p>
+  </div>
+
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+
+document.getElementById("nombre").textContent =
+  params.get("nombre") || "";
+
+document.getElementById("curp").textContent =
+  params.get("curp") || "";
+
+document.getElementById("fecha").textContent =
+  params.get("fecha") || "";
+</script>
+
+</body>
+</html>
