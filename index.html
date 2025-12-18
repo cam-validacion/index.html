@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Validación de Documentos Académicos</title>
+<title>Validación de documentos académicos electrónicos</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -16,120 +16,141 @@ body{
   max-width:420px;
   margin:20px auto;
   background:#fff;
-  padding:20px;
   border-radius:12px;
-  box-shadow:0 0 10px rgba(0,0,0,.1);
+  box-shadow:0 0 10px rgba(0,0,0,0.1);
+  overflow:hidden;
 }
 
 /* ENCABEZADO */
 .encabezado img{
   width:100%;
   display:block;
-  margin-bottom:20px;
 }
 
-/* TITULOS */
+/* CONTENIDO */
+.contenido{
+  padding:20px;
+}
+
 h1{
   font-size:20px;
-  font-weight:normal;
-  margin:0;
+  margin:5px 0 10px;
+  color:#333;
 }
 
 h2{
   font-size:24px;
   margin:10px 0 20px;
+  color:#000;
 }
 
-/* CAMPOS */
 label{
-  font-size:12px;
-  color:#777;
+  font-size:13px;
+  color:#666;
 }
 
 .campo{
   border:1px solid #ccc;
-  border-radius:8px;
+  border-radius:10px;
   padding:12px;
-  margin-bottom:15px;
-  font-size:16px;
+  margin:6px 0 14px;
+  font-size:15px;
 }
 
-/* FECHA */
-.fecha{
+/* ✅ PALOMITA BIEN PUESTA */
+.validacion{
   display:flex;
-  align-items:center;
-  gap:10px;
-  font-size:16px;
-  margin-top:10px;
+  justify-content:center;
+  margin:10px 0 5px;
 }
 
 .check{
-  width:45px;
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  border:6px solid #45b649;
+  position:relative;
 }
 
-/* FOOTER */
-.footer img{
+.check::after{
+  content:"";
+  position:absolute;
+  left:22px;
+  top:15px;
+  width:18px;
+  height:34px;
+  border-right:7px solid #45b649;
+  border-bottom:7px solid #45b649;
+  transform:rotate(45deg);
+}
+
+/* PIE */
+.pie img{
   width:100%;
-  margin-top:25px;
+  display:block;
 }
 
-.footer p{
+.texto-pie{
+  text-align:center;
   font-size:12px;
   color:#666;
-  text-align:center;
-  margin-top:10px;
+  padding:8px 15px 18px;
 }
 </style>
 </head>
 
 <body>
+
 <div class="contenedor">
 
   <!-- ENCABEZADO -->
   <div class="encabezado">
-    <img src="https://i.imgur.com/jgjXhuV.jpeg" alt="Encabezado">
+    <img src="https://i.imgur.com/jgjXhuV.jpeg">
   </div>
 
-  <h1>Sistema de Información y Gestión Educativa</h1>
-  <h2><strong>Validación de documentos académicos electrónicos</strong></h2>
+  <!-- CONTENIDO -->
+  <div class="contenido">
 
-  <label>NOMBRE</label>
-  <div class="campo" id="nombre"></div>
+    <h1>Sistema de Información y Gestión Educativa</h1>
+    <h2>Validación de documentos académicos electrónicos</h2>
 
-  <label>CURP</label>
-  <div class="campo" id="curp"></div>
+    <label>NOMBRE</label>
+    <div class="campo" id="nombre"></div>
 
-  <label>DOCUMENTO</label>
-  <div class="campo">Diplomado en línea (160 horas)</div>
+    <label>CURP</label>
+    <div class="campo" id="curp"></div>
 
-  <label>FECHA</label>
-  <div class="fecha">
-    <img class="check" src="https://i.imgur.com/0R0ZQxM.png" alt="check">
-    <div id="fecha"></div>
+    <label>DOCUMENTO</label>
+    <div class="campo">Diplomado en línea (160 horas)</div>
+
+    <label>FECHA</label>
+    <div class="campo" id="fecha"></div>
+
+    <!-- PALOMITA -->
+    <div class="validacion">
+      <div class="check"></div>
+    </div>
+
   </div>
 
-  <!-- FOOTER -->
-  <div class="footer">
-    <img src="https://i.imgur.com/8UTuFKj.jpeg" alt="Footer">
-    <p>
-      Sistema Electrónico Estatal del Estado de Coahuila<br>
-      Es una fuente de inteligencia anticorrupción para la construcción de información.
-    </p>
+  <!-- PIE -->
+  <div class="pie">
+    <img src="https://i.imgur.com/8UTuFKj.jpeg">
+  </div>
+
+  <div class="texto-pie">
+    Sistema Electrónico Estatal del Estado de Coahuila<br>
+    Es una fuente de inteligencia anticorrupción para la construcción de información.
   </div>
 
 </div>
 
 <script>
-const params = new URLSearchParams(window.location.search);
-
+const p = new URLSearchParams(window.location.search);
 document.getElementById("nombre").textContent =
-  params.get("nombre") || "";
-
-document.getElementById("curp").textContent =
-  params.get("curp") || "";
-
-document.getElementById("fecha").textContent =
-  params.get("fecha") || "";
+  (p.get("nombre") || "").replace(/\+/g," ");
+document.getElementById("curp").textContent = p.get("curp") || "";
+document.getElementById("fecha").textContent = p.get("fecha") || "";
 </script>
 
 </body>
